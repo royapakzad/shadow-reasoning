@@ -1,0 +1,6 @@
+{
+  "requestFramePermissions": [],
+  "name": "ai-red-teaming-lab_current",
+  "description": "A lab for exploring LLM vulnerabilities, exploits, and safety guardrails through advanced red teaming and adversarial testing.",
+  "prompt": ""
+}
