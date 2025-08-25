@@ -1,5 +1,4 @@
 {
-  "webAnalytics": {
-    "enabled": false
-  }
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist"
 }
