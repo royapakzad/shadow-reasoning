@@ -1,5 +1,6 @@
 
 
+
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
@@ -91,7 +92,7 @@ const ReasoningResponseCard: React.FC<{
                             Show/Hide Reasoning
                         </summary>
                          <div 
-                            className="p-3 border-t border-blue-200 dark:border-blue-800/60 bg-white dark:bg-card/30 max-h-56 overflow-y-auto custom-scrollbar prose prose-sm dark:prose-invert max-w-none"
+                            className="p-3 border-t border-blue-200 dark:border-blue-800/60 bg-white dark:bg-card/30 max-h-56 overflow-y-auto custom-scrollbar prose dark:prose-invert max-w-none"
                             dangerouslySetInnerHTML={createMarkup(reasoning)}
                         />
                     </details>
@@ -130,6 +131,13 @@ interface LabHistory {
     summarizationHistory: SummarizationRecord[];
     batchRunHistory: BatchRunRecord[];
 }
+
+const TrashIcon: React.FC = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+        <path fillRule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.58.22-2.365.468a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z" clipRule="evenodd" />
+    </svg>
+);
+
 
 // --- MAIN COMPONENT ---
 
@@ -635,6 +643,20 @@ const ShadowReasoningLab: React.FC = () => {
     document.body.removeChild(link);
   };
 
+  const handleDeleteSummary = (id: string) => {
+    setHistory(prev => ({
+        ...prev,
+        summarizationHistory: prev.summarizationHistory.filter(record => record.id !== id)
+    }));
+  };
+
+  const handleDeleteBatchRun = (id: string) => {
+      setHistory(prev => ({
+          ...prev,
+          batchRunHistory: prev.batchRunHistory.filter(record => record.id !== id)
+      }));
+  };
+
   const langInfo = AVAILABLE_NATIVE_LANGUAGES.find(l => l.code === selectedNativeLanguageCode);
   const nativeLanguageName = langInfo ? langInfo.name : 'Selected Language';
   const modelsToShow = AVAILABLE_MODELS.filter(m => m.id === 'togetherai/openai/gpt-oss-20b');
@@ -685,7 +707,7 @@ const ShadowReasoningLab: React.FC = () => {
                                 </div>
                                 <textarea id="english_policy_input" rows={10} value={englishPolicy} 
                                     onChange={e => { setEnglishPolicy(e.target.value); setActivePolicyPreset('custom'); }}
-                                    className="form-textarea w-full p-2 border rounded-md shadow-sm bg-background border-border focus:outline-none focus:ring-2 focus:ring-ring text-xs font-mono"
+                                    className="form-textarea w-full p-2 border rounded-md shadow-sm bg-background border-border focus:outline-none focus:ring-2 focus:ring-ring text-sm font-mono"
                                     placeholder="Enter the English Policy here..." />
                             </div>
                             <div>
@@ -699,7 +721,7 @@ const ShadowReasoningLab: React.FC = () => {
                                 </div>
                                 <textarea id="native_policy_input" rows={10} value={nativePolicy} 
                                     onChange={e => { setNativePolicy(e.target.value); setActivePolicyPreset('custom'); }}
-                                    className="form-textarea w-full p-2 border rounded-md shadow-sm bg-background border-border focus:outline-none focus:ring-2 focus:ring-ring text-xs font-mono"
+                                    className="form-textarea w-full p-2 border rounded-md shadow-sm bg-background border-border focus:outline-none focus:ring-2 focus:ring-ring text-sm font-mono"
                                     placeholder={`Enter the ${nativeLanguageName} Policy here...`} />
                             </div>
                         </div>
@@ -721,8 +743,7 @@ const ShadowReasoningLab: React.FC = () => {
                                     : 'text-muted-foreground hover:bg-background/50'
                                 }`}
                             >
-                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5"><path fillRule="evenodd" d="M10 2a.75.75 0 01.75.75v1.25h.001A7.001 7.001 0 0118 11.25v.75a.75.75 0 01-1.5 0v-.75a5.501 5.501 0 00-5.5-5.5H10.75V4a.75.75 0 01-.75-.75zM2 11.25a7.001 7.001 0 017-6.999V3a.75.75 0 011.5 0v1.25h.001a5.501 5.501 0 005.499 5.5v.75a.75.75 0 01-1.5 0v-.75a7.001 7.001 0 01-7 6.999v1.25a.75.75 0 01-1.5 0v-1.25A7.001 7.001 0 012 11.25z" clipRule="evenodd" /></svg>
-                                Prompt-based
+                               Prompt-based
                             </button>
                              <button
                                 onClick={() => setExperimentType('summarization')}
@@ -732,8 +753,7 @@ const ShadowReasoningLab: React.FC = () => {
                                     : 'text-muted-foreground hover:bg-background/50'
                                 }`}
                             >
-                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5"><path fillRule="evenodd" d="M4.25 5.5A.75.75 0 003.5 6.25v7.5a.75.75 0 00.75.75h7.5a.75.75 0 00.75-.75v-7.5a.75.75 0 00-.75-.75h-7.5zm.75 8.25V6.25h7.5v7.5h-7.5z" clipRule="evenodd" /><path d="M13.25 3.5A.75.75 0 0012.5 4.25v7.5a.75.75 0 00.75.75h.75a.75.75 0 000-1.5h-.75V5h7.5v.75a.75.75 0 001.5 0V4.25a.75.75 0 00-.75-.75h-7.5z" /></svg>
-                                PDF Summarization
+                               PDF Summarization
                             </button>
                         </div>
                     </div>
@@ -901,7 +921,12 @@ const ShadowReasoningLab: React.FC = () => {
                                         <span className="text-muted-foreground ml-2 text-xs">({record.sourceWordCount} words in source)</span>
                                     </div>
                                 </div>
-                                 <button onClick={(e) => { e.stopPropagation(); handleDownloadSummary(record); }} className="px-3 py-1 text-xs font-medium rounded-md transition-colors border bg-secondary text-secondary-foreground hover:bg-muted opacity-0 group-hover:opacity-100">Download</button>
+                                 <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button onClick={(e) => { e.stopPropagation(); handleDownloadSummary(record); }} className="px-3 py-1 text-xs font-medium rounded-md transition-colors border bg-secondary text-secondary-foreground hover:bg-muted">Download</button>
+                                    <button onClick={(e) => { e.stopPropagation(); handleDeleteSummary(record.id); }} aria-label="Delete summary report" className="p-1.5 text-muted-foreground hover:text-destructive rounded-md transition-colors">
+                                        <TrashIcon />
+                                    </button>
+                                 </div>
                             </summary>
                             <div className="p-6 border-t border-border bg-background/50">
                                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
@@ -935,7 +960,12 @@ const ShadowReasoningLab: React.FC = () => {
                                         </span>
                                     </div>
                                 </div>
-                                <span className="text-xs text-muted-foreground opacity-0 group-hover:opacity-100">Click to view details</span>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-xs text-muted-foreground opacity-0 group-hover:opacity-100">Click to view details</span>
+                                    <button onClick={(e) => { e.stopPropagation(); handleDeleteBatchRun(record.id); }} aria-label="Delete batch run report" className="p-1.5 text-muted-foreground hover:text-destructive rounded-md transition-colors opacity-0 group-hover:opacity-100">
+                                        <TrashIcon />
+                                    </button>
+                                </div>
                             </summary>
                              <div className="p-4 border-t border-border bg-background/50">
                                 <BatchRunResults results={record.results} isRunning={false} />
