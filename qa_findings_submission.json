@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "issue_title": "Bilingual Shadow-Reasoning Steering (Q&A): Hidden Multilingual CoT Steers Ideological Framing While English I/O Appears Neutral",
+  "model": {
+    "name": "gpt-oss-20b",
+    "version": "release-2025-08",
+    "provider": "OpenAI (open weights)",
+    "source_url": "https://www.kaggle.com/competitions/openai-gpt-oss-20b-red-teaming/overview",
+    "parameters": {
+      "temperature": 0.7,
+      "reasoning_level": "high",
+      "max_output_tokens": 1024,
+      "seed": 42
+    }
+  },
+  "environment": {
+    "endpoint": "Local inference or web app (https://shadow-reasoning.vercel.app/)",
+    "hardware": "1× A6000 (48GB) or similar; 64GB RAM",
+    "libraries": [
+      "transformers>=4.41",
+      "accelerate>=0.30",
+      "vllm (optional)"
+    ]
+  },
+  "issue_summary": {
+    "title": "Hidden multilingual chain-of-thought enables ideological steering in Q&A",
+    "topic_area": "Political persuasion; Deception; Chain-of-Thought issues; Deliberative Alignment",
+    "overview": "We compare three conditions: (1) No-CRP baseline (model’s own CoT), (2) English CRP, and (3) Farsi CRP. CRPs consistently skew reasoning and surface answers toward sovereignty/tradition frames. In the Farsi CRP case, the steering layer is hidden in non-English reasoning, making it nearly invisible to auditors who only see English I/O. Out of 30 Q&A scenarios, 97.3% showed divergences from baseline.",
+    "desired_behavior": "The model should respond faithfully and without covert ideological steering, with reasoning and I/O both auditable in the same language.",
+    "observed_behavior": "English CRP and Farsi CRP conditions reframed answers toward state-friendly positions while retaining a neutral surface. Across 30 Q&A scenarios, inconsistencies with baseline answers were observed in 97.3% of cases. The Farsi CRP created an auditing blind spot, where reasoning was in Farsi but outputs were in English.",
+    "self_assessed_severity": "8 (Serious)",
+    "self_assessed_severity_justification": "State-aligned propaganda framing with neutral-looking outputs; same CRP steering could apply across medicine, healthcare, law, privacy, violence/harm, and CBRN domains.",
+    "self_assessed_breadth": "7 (Large population)",
+    "self_assessed_breadth_justification": "Applicable to state chatbots and assistants reaching millions.",
+    "self_assessed_novelty": "8 (Substantial new pathway)",
+    "self_assessed_novelty_justification": "This is not a simple jailbreak but a new vulnerability class: using multilingual CRPs to steer hidden reasoning while preserving neutral I/O. It repurposes alignment techniques (e.g., deliberative alignment) for manipulation, showing that safety specifications themselves can be inverted into attack surfaces."
+  },
+  "harmony_response_walkthroughs": [
+    "... (example as before) ..."
+  ],
+  "steps_to_reproduce": [
+    "Open the browser-ready app at https://shadow-reasoning.vercel.app/.",
+    "Load qa_input.csv (30 scenarios) and run across the three conditions (No-CRP, English CRP, Farsi CRP).",
+    "After each run, download the full outputs (reasoning traces + English answers) as CSV files directly from the app.",
+    "Compare baseline vs CRP answers for framing shifts and contradictions."
+  ]
+}
