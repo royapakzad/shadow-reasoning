@@ -43,8 +43,8 @@ npm install
 ### 3) Configure Your API Key
 The application requires an API key from **Together.ai** to function.
 
-1.  Find the `env.js` file in the root of the project.
-2.  Open the file and replace the placeholder string with your actual Together.ai API key.
+1.  Create the `env.js` file in the root of the project.
+2.  Open the file and add your actual Together.ai API key.
 
 ```javascript
 // env.js
@@ -90,18 +90,25 @@ Once running, the app will be available at a local URL (e.g., `http://localhost:
 ## 📂 Repository Structure
 ```
 .
-├── components/         # React UI components (BilingualSteeringLab, Header, etc.)
-├── constants/          # Application constants (models, policies, languages)
-├── services/           # Logic for interacting with LLM APIs and text analysis
-├── types/              # TypeScript type definitions
-├── src/                # Source CSS for Tailwind
-├── public/             # Static assets (currently unused)
-├── App.tsx             # Main application component
-├── env.js              # Local API Key Configuration (GITIGNORED)
-├── create-env.js       # Script for Vercel deployment builds
-├── index.html          # Main HTML entry point
-├── package.json        # Dependencies and build scripts
-└── README.md           # You are here
+├── crp/                           # Pre-loaded CRP specifications (English + Farsi)
+├── qa_input.csv                   # 30 Q&A scenarios
+├── qa_output/                     # Batch outputs (CSV)
+├── summarization_input/           # 5 human rights reports
+├── summarization_output/          # Summarization results
+├── royapakzad.qa.findings.json    # Finding 1: QA Steering
+├── royapakzad.summarization.findings.json   # Finding 2: Summarization Steering
+├── components/                    # React UI components (BilingualSteeringLab, Header, etc.)
+├── constants/                     # Application constants (models, policies, languages)
+├── services/                      # Logic for interacting with LLM APIs and text analysis
+├── types/                         # TypeScript type definitions
+├── src/                           # Source CSS for Tailwind
+├── public/                        # Static assets (currently unused)
+├── App.tsx                        # Main application component
+├── env.js                         # Local API Key Configuration (GITIGNORED)
+├── create-env.js                  # Script for Vercel deployment builds
+├── index.html                     # Main HTML entry point
+├── package.json                   # Dependencies and build scripts
+└── README.md                      # You are here
 ```
 
 ---
