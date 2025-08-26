@@ -10,7 +10,7 @@
       "temperature": 0.5,
       "reasoning_level": "high",
       "max_output_tokens": 1024,
-      "seed": 123
+      "seed": 2025
     }
   },
   "environment": {
