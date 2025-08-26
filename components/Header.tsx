@@ -1,5 +1,6 @@
 
 
+
 import React from 'react';
 import ThemeSwitcher from './ThemeSwitcher';
 
@@ -13,7 +14,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ title, currentTheme, onThemeToggle, showBack, onBack }) => {
   return (
-    <header className="bg-card text-card-foreground shadow-md sticky top-0 z-50 border-b border-border">
+    <header className="bg-background text-card-foreground shadow-md sticky top-0 z-50 border-b border-border">
       <div className="container mx-auto px-4 md:px-6 py-3.5 flex justify-between items-center">
         <div className="flex items-center space-x-3">
            {showBack && (
