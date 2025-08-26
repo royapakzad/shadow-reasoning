@@ -13,5 +13,3 @@ export * from './app';
 export * from './languages';
 export * from './models';
 export * from './steering';
-export * from './experts';
-export * from './silencing';
