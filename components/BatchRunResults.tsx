@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
@@ -23,10 +24,10 @@ const ResultDetail: React.FC<{ title: string; answer: string; reasoning: string 
                 {definitiveAnswer}
             </span>
         </h5>
-        <div className="mt-2 text-xs space-y-2">
+        <div className="mt-2 text-sm space-y-2">
             <details>
                 <summary className="cursor-pointer text-primary/80 font-medium">Show Answer & Reasoning</summary>
-                <div className="mt-1 p-2 bg-background rounded prose prose-sm dark:prose-invert max-w-none">
+                <div className="mt-1 p-2 bg-background rounded prose dark:prose-invert max-w-none">
                     <p className="font-bold">Answer:</p>
                     <div dangerouslySetInnerHTML={createMarkup(answer)} />
                     {reasoning && <>
