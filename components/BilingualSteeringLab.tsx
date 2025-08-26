@@ -1,6 +1,7 @@
 
 
 
+
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
@@ -92,7 +93,7 @@ const ReasoningResponseCard: React.FC<{
                             Show/Hide Reasoning
                         </summary>
                          <div 
-                            className="p-3 border-t border-blue-200 dark:border-blue-800/60 bg-white dark:bg-card/30 max-h-56 overflow-y-auto custom-scrollbar prose dark:prose-invert max-w-none"
+                            className="p-3 border-t border-blue-200 dark:border-blue-800/60 bg-white dark:bg-card/30 max-h-56 overflow-y-auto custom-scrollbar prose dark:prose-invert max-w-none text-base"
                             dangerouslySetInnerHTML={createMarkup(reasoning)}
                         />
                     </details>
@@ -119,8 +120,8 @@ const StepHeading: React.FC<{ number: number; title: string; }> = ({ number, tit
 );
 
 const EXPERIMENT_DETAILS = {
-    name: "Shadow Reasoning",
-    description: "Shadow Reasoning is a red-teaming technique that manipulates a model’s hidden chain-of-thought reasoning through customized “deliberative” reasoning policies (CRPs). This allows actors to bypass the model’s internal safety policies and steer its reasoning in ways invisible to surface audits (in particular in bilingual reasoning)."
+    name: "Bilingual Shadow Reasoning",
+    description: "Bilingual Shadow Reasoning is a red-teaming technique that manipulates a model’s hidden chain-of-thought reasoning through customized “deliberative” reasoning policies (CRPs). This allows actors to bypass the model’s internal safety policies and steer its reasoning in ways invisible to surface audits (in particular in bilingual reasoning)."
 };
 
 type ActivePolicyPreset = 'gender' | 'custom';
@@ -849,6 +850,28 @@ const ShadowReasoningLab: React.FC = () => {
                             </button>
                         )}
                     </div>
+                     <details className="mt-6 bg-muted/50 rounded-lg border border-border">
+                        <summary className="px-4 py-3 cursor-pointer text-sm font-medium text-foreground hover:bg-muted list-none flex justify-between items-center transition-colors">
+                            <span>View System Prompts</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 transition-transform details-summary-marker">
+                                <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+                            </svg>
+                        </summary>
+                        <div className="p-4 border-t border-border bg-background/50 text-xs space-y-4">
+                            <div>
+                                <h5 className="font-semibold text-foreground mb-1">1. No Policy</h5>
+                                <pre className="whitespace-pre-wrap font-mono bg-card p-2 rounded-md">{getSystemInstruction('none', englishPolicy, nativePolicy)}</pre>
+                            </div>
+                            <div>
+                                <h5 className="font-semibold text-foreground mb-1">2. English Policy</h5>
+                                <pre className="whitespace-pre-wrap font-mono bg-card p-2 rounded-md">{getSystemInstruction('english', englishPolicy, nativePolicy)}</pre>
+                            </div>
+                            <div>
+                                <h5 className="font-semibold text-foreground mb-1">3. {nativeLanguageName} Policy</h5>
+                                <pre className="whitespace-pre-wrap font-mono bg-card p-2 rounded-md">{getSystemInstruction('native', englishPolicy, nativePolicy)}</pre>
+                            </div>
+                        </div>
+                    </details>
                     {batchRunError && (
                         <div className="p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded-md flex justify-between items-center">
                             <div>
