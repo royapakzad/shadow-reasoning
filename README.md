@@ -1,4 +1,4 @@
-# 🌓 Bilingual Shadow Reasoning: Red Teaming Through Customized Deliberative Reasoning Policies
+#  Bilingual Shadow Reasoning: Red Teaming Through Customized Deliberative Reasoning Policies
 
 
 **Shadow Reasoning** is an interactive web app and experimental framework for probing how **Customized Reasoning Policies (CRPs)** can steer open-weight LLMs.  
