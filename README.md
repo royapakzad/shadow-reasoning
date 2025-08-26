@@ -1,7 +1,7 @@
 #  Bilingual Shadow Reasoning: Red Teaming Through Customized Deliberative Reasoning Policies
 
 
-**Shadow Reasoning** is an interactive web app and experimental framework for probing how **Customized Reasoning Policies (CRPs)** can steer open-weight LLMs.  
+**Bilingual Shadow Reasoning** is an interactive web app and experimental framework for probing how **Customized Reasoning Policies (CRPs)** can steer open-weight LLMs.  
 It demonstrates a novel **red-teaming vulnerability**: alignment specifications (e.g., *Deliberative Alignment*) can be inverted into hidden steering rubrics, producing neutral-looking outputs that nonetheless track authoritarian ideology.
 
 This repo contains the app, datasets, CRPs, and findings used for my submission to the **[OpenAI GPT-OSS-20B Red Teaming Hackathon](https://www.kaggle.com/competitions/openai-gpt-oss-20b-red-teaming/overview)**.
