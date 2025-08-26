@@ -40,7 +40,7 @@ const ResponseCard: React.FC<{ title: string, content: string | null, isLoading:
             </div>
         ) : content ? (
             <div
-                className="flex-grow overflow-y-auto custom-scrollbar prose dark:prose-invert max-w-none prose-p:my-2 text-sm"
+                className="flex-grow overflow-y-auto custom-scrollbar prose dark:prose-invert max-w-none prose-p:my-2 text-base"
                 dangerouslySetInnerHTML={createMarkup(content)}
             />
         ) : (
