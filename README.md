@@ -1,13 +1,30 @@
-# Bilingual Shadow Reasoning: Red Teaming Through Customized Deliberative Reasoning Policies
+# 🌓 Bilingual Shadow Reasoning: Red Teaming Through Customized Deliberative Reasoning Policies
 
-**Bilingual Shadow Reasoning** is an interactive web app and experimental framework for probing how **Customized Reasoning Policies (CRPs)** can steer open-weight LLMs.
-It demonstrates a novel **red-teaming vulnerability**: alignment specifications (e.g., for safety or cultural nuance) can be inverted into hidden steering rubrics, producing neutral-looking outputs that nonetheless track a specific ideology.
 
-This lab allows researchers and safety teams to explore this vulnerability in a bilingual context, where a policy applied in a non-English language can manipulate the model's internal reasoning chain while still producing a final output in English.
+**Shadow Reasoning** is an interactive web app and experimental framework for probing how **Customized Reasoning Policies (CRPs)** can steer open-weight LLMs.  
+It demonstrates a novel **red-teaming vulnerability**: alignment specifications (e.g., *Deliberative Alignment*) can be inverted into hidden steering rubrics, producing neutral-looking outputs that nonetheless track authoritarian ideology.
+
+This repo contains the app, datasets, CRPs, and findings used for my submission to the **[OpenAI GPT-OSS-20B Red Teaming Hackathon](https://www.kaggle.com/competitions/openai-gpt-oss-20b-red-teaming/overview)**.
+
+👉 **Kaggle Writeup:** _add your public Kaggle writeup link here_
+
 
 ---
 
-##  Running the App Locally
+## 🌐 Browser-Ready Demo
+
+You don’t have to run locally — try the app here:  
+👉 **https://shadow-reasoning.vercel.app/**
+
+**What you can do in the demo:**
+- Upload or select **CRPs** (English, Farsi, or your own custom policies).
+- Upload **CSV prompts** (for Q&A) or long documents (for summarization).
+- Run across three conditions: **No-CRP**, **English CRP**, **Farsi CRP**.
+- **Download results as CSV** (reasoning + outputs) for auditing and analysis.
+
+---
+
+## 🚀 Running the App Locally
 
 To run this application on your local machine, follow these steps.
 
@@ -52,19 +69,11 @@ This project is a static web application and does not have a built-in developmen
 python -m http.server
 ```
 
-**Option B: Using `npx serve`**
-```bash
-npx serve
-```
-
-**Option C: Using a VS Code Extension**
-If you are using Visual Studio Code, you can install the **Live Server** extension, right-click on `index.html`, and select "Open with Live Server".
-
 Once running, the app will be available at a local URL (e.g., `http://localhost:8000` or `http://localhost:3000`).
 
 ---
 
-##  Key Features
+## ✨ Key Features
 
 *   **Three Experimental Conditions:**
     1.  **No-CRP Baseline:** The model uses its own internal chain-of-thought reasoning.
@@ -78,7 +87,7 @@ Once running, the app will be available at a local URL (e.g., `http://localhost:
 
 ---
 
-##  Repository Structure
+## 📂 Repository Structure
 ```
 .
 ├── components/         # React UI components (BilingualSteeringLab, Header, etc.)
@@ -97,7 +106,7 @@ Once running, the app will be available at a local URL (e.g., `http://localhost:
 
 ---
 
-## How to Use the Lab
+## 🧪 How to Use the Lab
 
 1.  **Select a Model:** Choose the LLM you want to test from the available options.
 2.  **Configure Policies:** Use the pre-loaded "Gender & Cultural Norms" policy, or upload your own custom policies as `.txt` files for both English and a native language.
@@ -112,7 +121,7 @@ Once running, the app will be available at a local URL (e.g., `http://localhost:
 
 ---
 
-## Findings
+## 📊 Findings
 
 Two core findings can be consistently demonstrated with this lab:
 
@@ -121,12 +130,11 @@ Two core findings can be consistently demonstrated with this lab:
 
 ---
 
-## Citation**  
+## 👩‍💻 Citation
+
 Pakzad, Roya. 2025. *Bilingual Shadow Reasoning: Red Teaming Through Customized Deliberative Reasoning Policies* (GitHub).  
 👉 https://shadow-reasoning.vercel.app/
-
-
-## License
+## 📜 License
 
 All datasets, prompts, outputs, and findings in this repository are released under **CC0 1.0 Universal (Public Domain Dedication)**.
 
