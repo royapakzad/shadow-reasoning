@@ -6,7 +6,7 @@ It demonstrates a novel **red-teaming vulnerability**: alignment specifications 
 
 This repo contains the app, datasets, CRPs, and findings used for my submission to the **[OpenAI GPT-OSS-20B Red Teaming Hackathon](https://www.kaggle.com/competitions/openai-gpt-oss-20b-red-teaming/overview)**.
 
-👉 **Kaggle Writeup:** _add your public Kaggle writeup link here_
+👉 **Kaggle Writeup:**[ _Here_](https://www.kaggle.com/competitions/openai-gpt-oss-20b-red-teaming/writeups/bilingual-shadow-reasoningred-teaming-through-cust)
 
 
 ---
