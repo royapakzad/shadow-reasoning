@@ -60,15 +60,6 @@ Run the build script to generate the `output.css` file required by the applicati
 npm run build
 ```
 
-### 5) Serve the Application
-This project is a static web application and does not have a built-in development server. You can serve it using any local web server tool.
-
-**Option A: Using Python (if installed)**
-```bash
-# For Python 3
-python -m http.server
-```
-
 Once running, the app will be available at a local URL (e.g., `http://localhost:8000` or `http://localhost:3000`).
 
 ---
